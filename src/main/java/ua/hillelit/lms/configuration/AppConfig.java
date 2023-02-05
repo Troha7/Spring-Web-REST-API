@@ -1,8 +1,10 @@
 package ua.hillelit.lms.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ua.hillelit.lms.servlet.CustomServlet;
 
 /**
  * {@link AppConfig} is a class for configuration app.
@@ -21,6 +23,16 @@ public class AppConfig {
     @Bean
     ObjectMapper objectMapper() {
         return new ObjectMapper();
+    }
+
+    /**
+     * Create custom servlet Bean at main path "/" and port "8080".
+     *
+     * @return {@link CustomServlet}
+     */
+    @Bean
+    public ServletRegistrationBean customServletBean() {
+        return new ServletRegistrationBean(new CustomServlet(), "");
     }
 
 }
